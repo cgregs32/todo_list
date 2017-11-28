@@ -3,6 +3,7 @@ class TodosController < ApplicationController
 
   def index
     @todos = Todo.all
+    @progress = Todo.progress_bar
   end
 
   def show
@@ -39,17 +40,18 @@ class TodosController < ApplicationController
 
   def check_complete
     Todo.update_completed(params[:id])
-    # Todo.find(params[:id]).update(complete: true)
     redirect_to todos_path
   end
 
   def completed
     @todos = Todo.search_completed
+    @progress = Todo.progress_bar
     render 'index'
   end
 
   def not_completed
     @todos = Todo.search_completed(false)
+    @progress = Todo.progress_bar
     render 'index'
   end
 

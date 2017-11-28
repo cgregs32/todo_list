@@ -8,4 +8,10 @@ class Todo < ApplicationRecord
     Todo.find(id).update(complete: true)
   end
 
-end 
+  def self.progress_bar
+    completed = Todo.where("complete = 'true'").count.to_f
+    total = Todo.all.count
+
+    (completed / total) * 100
+  end
+end

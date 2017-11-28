@@ -1,0 +1,29 @@
+<div class="container">
+<%= form_for @todo do |f| %>
+
+  <div class="form-group">
+    <%= f.label :title %> <br>
+    <%= f.text_field :title, required: true, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description %> <br>
+    <%= f.text_area :description, class: "form-control" %>
+  </end>
+
+  <div class="form-group">
+    <%= f.label :complete %>
+    <%= f.check_box :complete%>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :priority %>
+    <%= f.select :priority, [['Urgent'], ['Moderate'], ['Eventually']],
+                  required: true, class: "form-control" %>
+  </div>
+
+
+  <%= f.submit class:"btn btn-primary" %>
+
+<% end %>
+</div>

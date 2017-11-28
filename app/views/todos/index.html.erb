@@ -1,0 +1,37 @@
+<h1>ToDo List</h1>
+
+<div class="container">
+  <%= render 'search_buttons' %>
+  <div class="wrapper">
+    <% @todos.each do |todo| %>
+
+      <div class="card bg-dark text-white">
+        <h3><%= link_to todo.title, todo %>
+          <span id="checked">
+            <%= link_to "\u2713".encode('utf-8'), check_complete_path(id: todo.id),
+                         method: 'patch', class: "btn btn-danger" %>
+          </span>
+        </h3>
+        <hr>
+        <h5 id="complete-status">
+          <%if todo.complete %>
+            Status: <span class="status-yes">complete</span>
+          <% else %>
+            Status: <span class="status-not">not complete<span>
+          <% end %>
+        </h5>
+        <hr>
+        <% if todo.priority == 'Urgent' %>
+          <p>Urgency: <span class="urgent"><%= todo.priority %></span></p>
+        <% elsif todo.priority == "Eventually"%>
+          <p>Urgency: <span class="eventually"><%= todo.priority %></span></p>
+        <% else %>
+          <p>Urgency: <span class="normal"><%= todo.priority %></span></p>
+        <% end %>
+        <hr>
+      </div>
+    <% end %>
+    <br>
+  </div>
+  <%= link_to 'Make new Todo', new_todo_path, class: "btn btn-primary" %>
+</div>

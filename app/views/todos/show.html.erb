@@ -1,0 +1,19 @@
+<h1><%= @todo.title %></h1>
+
+
+<p>Completed:
+  <%if @todo.complete %>
+    No
+  <% else %>
+    Yes
+  <% end %>
+</p>
+
+<p>Description: <%= @todo.description %></p>
+
+
+
+<%= link_to 'All Posts', todos_path, class: "btn btn-info"%>
+<%= link_to "Edit", edit_todo_path(@todo), class: "btn btn-warning" %>
+<%= link_to 'Delete', todo_path(@todo), class: "btn btn-danger",
+      method: :delete, data: {confirm: 'Are you sure?'}%>
